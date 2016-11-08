@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<item>
+        <shape>
+            <solid android:color="#dddddd" />
+
+            <corners android:radius="9dp" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/dropdown_normal_holo_dark"/>
+</layer-list>
