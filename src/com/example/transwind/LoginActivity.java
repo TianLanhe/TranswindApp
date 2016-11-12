@@ -1,8 +1,13 @@
 package com.example.transwind;
 
+import com.example.transwind.httptools.HttpControler;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,6 +24,10 @@ public class LoginActivity extends Activity {
 	TextView txt_findback;
 	TextView txt_regist;
 
+	// 数据相关
+	String phonenum;
+	String password;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +40,7 @@ public class LoginActivity extends Activity {
 		btn_login = (Button) findViewById(R.id.btn_login_login);
 
 		// 如果用户曾经成功登录过，则系统自动输入手机号码
-		String phonenum = getSharedPreferences("user", MODE_PRIVATE).getString(
+		phonenum = getSharedPreferences("user", MODE_PRIVATE).getString(
 				"phonenum", "");
 		edt_phonenum.setText(phonenum);
 
@@ -59,24 +68,65 @@ public class LoginActivity extends Activity {
 		btn_login.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				String phonenum = edt_phonenum.getText().toString();
-				String password = edt_password.getText().toString();
+				phonenum = edt_phonenum.getText().toString();
+				password = edt_password.getText().toString();
 				if (phonenum.equals("")) {
 					Toast.makeText(LoginActivity.this, "请输入手机号码",
 							Toast.LENGTH_SHORT).show();
 				} else if (password.equals("")) {
 					Toast.makeText(LoginActivity.this, "请输入密码",
 							Toast.LENGTH_SHORT).show();
-				} else if (!phonenum.startsWith("1")||phonenum.length()!=11) {
+				} else if (!phonenum.startsWith("1") || phonenum.length() != 11) {
 					edt_phonenum.setText("");
 					Toast.makeText(LoginActivity.this, "请输入正确的手机号码",
 							Toast.LENGTH_SHORT).show();
 				} else {
-					// 发送账号密码到服务器进行登录
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							int result_code = HttpControler.login(phonenum,
+									password);
+							Message msg = new Message();
+							msg.what = result_code;
+							handler.sendMessage(msg);
+						}
+					}).start();
 				}
-				// 登录成功进入主界面
-				// 否则提示密码错误
 			}
 		});
 	}
+
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case HttpControler.INTERNET_ERROR:
+				Toast.makeText(LoginActivity.this, "网络错误，请检查网络",
+						Toast.LENGTH_SHORT).show();
+				break;
+			case HttpControler.HTTP_RESULT_ERROR:
+				Toast.makeText(LoginActivity.this, "手机号或密码错误",
+						Toast.LENGTH_SHORT).show();
+				break;
+			case HttpControler.DATA_ERROR:
+				Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT)
+						.show();
+				break;
+			case HttpControler.HTTP_RESULT_OK:
+				//保存相关配置
+				SharedPreferences.Editor editor = getSharedPreferences("user",
+						MODE_PRIVATE).edit();
+				editor.putString("phonenum", phonenum);
+				editor.putBoolean("hasLogin", true);
+				editor.commit();
+
+				//进入主界面
+				Intent intent = new Intent(LoginActivity.this,
+						MainActivity.class);
+				startActivity(intent);
+				finish();
+				break;
+			}
+		}
+	};
 }

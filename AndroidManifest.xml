@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="23" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.example.transwind.data.TransWindApplication"
