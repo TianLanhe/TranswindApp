@@ -21,24 +21,27 @@
             android:layout_centerInParent="true"
             android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/edittext_reset_password"
-            style="@style/EditTextStyle"
-            android:hint="@string/reset_hint"
-            android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/edt_reset_password"
+                style="@style/EditTextStyle"
+                android:hint="@string/reset_hint"
+                android:inputType="textPassword" >
 
-        <EditText
-            android:id="@+id/edittext_reset_password_confirm"
-            style="@style/EditTextStyle"
-            android:layout_marginTop="10dp"
-            android:hint="@string/reset_confirm_hint"
-            android:inputType="textPassword" />
+                <requestFocus />
+            </EditText>
 
-        <Button
-            android:id="@+id/btn_reset_reset"
-            style="@style/ButtonStyle"
-            android:layout_marginTop="10dp"
-            android:text="@string/reset" />
+            <EditText
+                android:id="@+id/edt_reset_password_confirm"
+                style="@style/EditTextStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/reset_confirm_hint"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/btn_reset_reset"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="10dp"
+                android:text="@string/reset" />
         </LinearLayout>
     </RelativeLayout>
 

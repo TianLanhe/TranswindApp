@@ -1,12 +1,135 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.transwind.MainActivity" >
+    android:orientation="vertical" >
 
+    <FrameLayout
+        android:id="@+id/fly_main_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9" />
 
-</RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"
+        android:contentDescription="@null" />
+
+    <RadioGroup
+        android:id="@+id/radg_main_tab"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <!-- 首页 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/home"
+            android:button="@null"
+            android:drawableTop="@drawable/main_home" />
+
+        <!-- 语言集市_商户 -->
+        <RadioButton
+            android:id="@+id/rad_main_language_market_merchant"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/language_market"
+            android:button="@null" />
+
+        <!-- 语言集市_译者 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_language_market_translator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="@string/language_market"
+            android:button="@null" />
+
+        <!-- 人才智库_商户 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_talent_merchant"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/talent"
+            android:button="@null" />
+
+        <!-- 人才智库_译者 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_talent_translator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/talent"
+            android:button="@null" />
+
+        <!-- 竞技场 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_competition"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/competition"
+            android:button="@null" />
+
+        <!-- 线上论坛 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_bbs"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/bbs"
+            android:button="@null" />
+
+        <!-- 每日精选 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_read_every"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/readevery"
+            android:button="@null" />
+
+        <!-- 我的 -->
+
+        <RadioButton
+            android:id="@+id/rad_main_mine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/mine"
+            android:button="@null"
+            android:drawableTop="@drawable/main_mine" />
+    </RadioGroup>
+
+</LinearLayout>

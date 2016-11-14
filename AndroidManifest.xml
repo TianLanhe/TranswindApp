@@ -5,9 +5,9 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="17"
         android:targetSdkVersion="23" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -27,15 +27,16 @@
         <activity
             android:name=".StartActivity"
             android:theme="@style/StartActivityTheme" >
-        </activity>
-
-        <!-- 登录界面 -->
-        <activity android:name=".LoginActivity" >
-            <intent-filter>
+                        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- 登录界面 -->
+        <activity android:name=".LoginActivity" >
+
         </activity>
 
         <!-- 找回密码界面 -->
@@ -45,7 +46,7 @@
         <!-- 注册界面 -->
         <activity android:name=".RegistActivity" >
         </activity>
-        
+
         <!-- 重置密码界面 -->
         <activity android:name=".ResetActivity" >
         </activity>

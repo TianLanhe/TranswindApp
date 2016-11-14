@@ -26,7 +26,10 @@
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:hint="@string/phonenum_hint"
-                android:inputType="phone" />
+                android:inputType="phone" >
+
+                <requestFocus />
+            </EditText>
 
             <EditText
                 android:id="@+id/edt_regist_password"

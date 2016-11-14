@@ -2,6 +2,7 @@ package com.example.transwind;
 
 import com.example.transwind.httptools.HttpControler;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,6 +52,7 @@ public class LoginActivity extends Activity {
 				Intent intent = new Intent(LoginActivity.this,
 						FindbackActivity.class);
 				startActivity(intent);
+				finish();
 			}
 		});
 
@@ -61,6 +63,7 @@ public class LoginActivity extends Activity {
 				Intent intent = new Intent(LoginActivity.this,
 						RegistActivity.class);
 				startActivity(intent);
+				finish();
 			}
 		});
 
@@ -96,6 +99,7 @@ public class LoginActivity extends Activity {
 		});
 	}
 
+	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {

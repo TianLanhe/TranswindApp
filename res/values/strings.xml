@@ -17,5 +17,12 @@
     <string name="reset_confirm_hint">请确认新密码</string>
     <string name="reset">重置</string>
     <string name="spinner_hint">请选择用户类型</string>
+    <string name="home">首页</string>
+    <string name="mine">我的</string>
+    <string name="language_market">语言集市</string>
+    <string name="talent">人才智库</string>
+    <string name="competition">竞技场</string>
+    <string name="bbs">线上论坛</string>
+    <string name="readevery">每日精选</string>
 
 </resources>

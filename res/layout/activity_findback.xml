@@ -25,7 +25,9 @@
                 android:id="@+id/edt_findback_phonenum"
                 style="@style/EditTextStyle"
                 android:hint="@string/phonenum_hint"
-                android:inputType="phone" />
+                android:inputType="phone" >
+                <requestFocus />
+            </EditText>
 
             <LinearLayout
                 android:layout_width="match_parent"

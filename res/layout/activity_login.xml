@@ -20,7 +20,9 @@
             style="@style/EditTextStyle"
             android:layout_marginTop="10dp"
             android:hint="@string/phonenum_hint"
-            android:inputType="phone" />
+            android:inputType="phone" >
+            <requestFocus />
+        </EditText>
 
         <EditText
             android:id="@+id/edittext_login_password"
@@ -35,29 +37,28 @@
             android:layout_marginTop="10dp"
             android:text="@string/login" />
     </LinearLayout>
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="10dp" >
-        
+        android:paddingRight="5dp" >
+
         <TextView
             android:id="@+id/txt_login_findback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="@string/findback" />
-        
+
         <TextView
             android:id="@+id/txt_login_regist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="@string/regist" />
-        
     </RelativeLayout>
 
 </RelativeLayout>
