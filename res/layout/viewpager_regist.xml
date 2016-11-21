@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/edt_regist_phonenum"
+        style="@style/EditTextStyle"
+        android:layout_width="match_parent"
+        android:drawableLeft="@drawable/viewpager_login_phone"
+        android:drawablePadding="10dp"
+        android:hint="@string/regist_phonenum_hint"
+        android:inputType="phone" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edt_regist_password"
+        style="@style/EditTextStyle"
+        android:drawableLeft="@drawable/viewpager_login_lock"
+        android:drawablePadding="10dp"
+        android:hint="@string/regist_password_hint"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/edt_regist_password_confirm"
+        style="@style/EditTextStyle"
+        android:drawableLeft="@drawable/viewpager_login_lock"
+        android:drawablePadding="10dp"
+        android:hint="@string/password_confirm_hint"
+        android:inputType="textPassword" />
+
+    <Spinner
+        android:id="@+id/spn_regist_user_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/spinner"
+        android:entries="@array/user_type"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:prompt="@string/spinner_hint"
+        android:spinnerMode="dialog" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp" >
+
+        <EditText
+            android:id="@+id/edt_regist_verificate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableLeft="@drawable/viewpager_login_shield"
+            android:drawablePadding="10dp"
+            android:hint="@string/verificate_hint"
+            android:inputType="number"
+            android:singleLine="true" />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/my_dark_gray"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/txt_regist_get_verification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="5dp"
+            android:text="@string/get_verification"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_regist_yes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/viewpager_regist_yes_normal"
+        android:text="@string/yes_hint"
+        android:textColor="@color/my_blue" />
+
+    <Button
+        android:id="@+id/btn_regist_regist"
+        style="@style/ButtonStyle"
+        android:background="@drawable/button_unclickable"
+        android:enabled="false"
+        android:layout_marginTop="10dp"
+        android:text="@string/regist_hint"
+        android:textColor="@color/white" />
+
+</LinearLayout>

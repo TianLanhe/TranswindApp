@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/edt_login_phonenum"
+        style="@style/EditTextStyle"
+        android:hint="@string/login_phonenum_hint"
+        android:drawableLeft="@drawable/viewpager_login_mine"
+        android:drawablePadding="10dp"
+        android:inputType="phone" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edt_login_password"
+        style="@style/EditTextStyle"
+        android:hint="@string/login_password_hint"
+        android:drawableLeft="@drawable/viewpager_login_lock"
+        android:drawablePadding="10dp"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/txt_login_findback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="5dp"
+        android:text="@string/findback"
+        android:textColor="@color/my_blue" />
+
+    <Button
+        android:id="@+id/btn_login_login"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="40dp"
+        android:text="@string/login"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/txt_login_smslogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="@string/sms_login"
+        android:textColor="@color/my_blue" />
+
+</LinearLayout>

@@ -31,21 +31,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/home"
             android:button="@null"
-            android:drawableTop="@drawable/main_home" />
+            android:drawableTop="@drawable/main_home"
+            android:gravity="center"
+            android:text="@string/home" />
 
         <!-- 语言集市_商户 -->
-        <RadioButton
+
+        <RadioButton
             android:id="@+id/rad_main_language_market_merchant"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/language_market"
-            android:button="@null" />
+            android:visibility="gone" />
 
         <!-- 语言集市_译者 -->
 
@@ -54,10 +55,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:visibility="gone"
+            android:button="@null"
             android:gravity="center"
             android:text="@string/language_market"
-            android:button="@null" />
+            android:visibility="gone" />
 
         <!-- 人才智库_商户 -->
 
@@ -66,10 +67,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/talent"
-            android:button="@null" />
+            android:visibility="gone" />
 
         <!-- 人才智库_译者 -->
 
@@ -78,10 +79,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/talent"
-            android:button="@null" />
+            android:visibility="gone" />
 
         <!-- 竞技场 -->
 
@@ -90,10 +91,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/competition"
-            android:button="@null" />
+            android:visibility="gone" />
 
         <!-- 线上论坛 -->
 
@@ -102,10 +103,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/bbs"
-            android:button="@null" />
+            android:visibility="gone" />
 
         <!-- 每日精选 -->
 
@@ -114,10 +115,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/readevery"
-            android:button="@null" />
+            android:visibility="gone" />
 
         <!-- 我的 -->
 
@@ -126,10 +127,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/mine"
             android:button="@null"
-            android:drawableTop="@drawable/main_mine" />
+            android:drawableTop="@drawable/main_mine"
+            android:gravity="center"
+            android:text="@string/mine" />
     </RadioGroup>
 
 </LinearLayout>

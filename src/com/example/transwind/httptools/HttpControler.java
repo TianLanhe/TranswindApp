@@ -260,4 +260,30 @@ public class HttpControler {
 		}
 		return HTTP_RESULT_OK;
 	}
+
+	public static String getType(String phonenum) {
+		// 连接网址
+		HttpURLConnection connection = connectURL("/transwind/app/get_type.php");
+		if (connection == null)
+			return "INTERNET_ERROR";
+
+		// 发送POST数据
+		String str = null;
+		try {
+			str = "phonenum=" + URLEncoder.encode(phonenum, "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		int result = setPost(connection, str);
+		if (result == ERROR)
+			return "INTERNET_ERROR";
+
+		// 请求并处理返回结果
+		// 获得返回数据
+		String content = getJSONString(connection);
+		if (content == null)
+			return "INTERNET_ERROR";
+		else
+			return content;
+	}
 }

@@ -6,7 +6,7 @@
     <string name="phonenum_hint">请输入手机号码</string>
     <string name="password_hint">请输入密码</string>
     <string name="login">登录</string>
-    <string name="regist">立即注册</string>
+    <string name="regist">注册</string>
     <string name="findback">找回密码</string>
     <string name="title">Title</string>
     <string name="verificate_hint">请输入验证码</string>
@@ -24,5 +24,11 @@
     <string name="competition">竞技场</string>
     <string name="bbs">线上论坛</string>
     <string name="readevery">每日精选</string>
+    <string name="login_phonenum_hint">手机</string>
+    <string name="login_password_hint">密码</string>
+    <string name="sms_login">—  短信登录  —</string>
+    <string name="yes_hint">我已经看过并同意《用户使用协议》</string>
+    <string name="regist_phonenum_hint">请输入手机号码</string>
+    <string name="regist_password_hint">请输入密码(6~15位)</string>
 
 </resources>

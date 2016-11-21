@@ -110,7 +110,7 @@ public class ResetActivity extends Activity {
 
 				// 进入登录界面
 				Intent intent = new Intent(ResetActivity.this,
-						LoginActivity.class);
+						LoginOrRegistActivity.class);
 				startActivity(intent);
 				finish();
 				break;

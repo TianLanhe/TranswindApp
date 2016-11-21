@@ -10,16 +10,11 @@ public class User {
 	private String phonenum;
 	private int type;
 	private String username;
-	private String level;
+	private Bitmap icon;
+	private int wind_bean;
+	
 	private String email;
 	private String address;
-	private String sex;
-	private String qq;
-	private String wechat;
-	private String birthday;
-	private int wind_bean;
-	private String school;
-	private Bitmap icon;
 	
 	public User(){
 		phonenum="";
@@ -49,5 +44,16 @@ public class User {
 	}
 	public void setUsername(String username){
 		this.username=username;
+	}
+	
+	public void setIcon(Bitmap icon){
+		this.icon=icon;
+	}
+	public Bitmap getIcon(){
+		return icon;
+	}
+	
+	public int getBean(){
+		return wind_bean;
 	}
 }

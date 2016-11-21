@@ -5,10 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="17"
+        android:minSdkVersion="14"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:name="com.example.transwind.data.TransWindApplication"
@@ -27,7 +29,7 @@
         <activity
             android:name=".StartActivity"
             android:theme="@style/StartActivityTheme" >
-                        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,17 +37,13 @@
         </activity>
 
         <!-- 登录界面 -->
-        <activity android:name=".LoginActivity" >
-
+        <activity android:name=".LoginOrRegistActivity" >
         </activity>
 
         <!-- 找回密码界面 -->
         <activity android:name=".FindbackActivity" >
         </activity>
 
-        <!-- 注册界面 -->
-        <activity android:name=".RegistActivity" >
-        </activity>
 
         <!-- 重置密码界面 -->
         <activity android:name=".ResetActivity" >

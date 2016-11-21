@@ -28,7 +28,7 @@ public class StartActivity extends Activity {
                     startActivity(intent);
                     finish();
                 }else{
-                	Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
+                	Intent intent=new Intent(getApplicationContext(),LoginOrRegistActivity.class);
                     startActivity(intent);
                     finish();
                 }
