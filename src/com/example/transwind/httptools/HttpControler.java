@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class HttpControler {
@@ -261,6 +263,7 @@ public class HttpControler {
 		return HTTP_RESULT_OK;
 	}
 
+	// 发送手机号，获取用户类型，返回JSON字符串自行解析
 	public static String getType(String phonenum) {
 		// 连接网址
 		HttpURLConnection connection = connectURL("/transwind/app/get_type.php");
@@ -285,5 +288,49 @@ public class HttpControler {
 			return "INTERNET_ERROR";
 		else
 			return content;
+	}
+
+	// 无需POST数据，获取广告信息，返回JSON数据，包含result_code和若干个广告数组
+	public static String getBanner() {
+		// 连接网址
+		HttpURLConnection connection = connectURL("/transwind/app/get_banner.php");
+		if (connection == null)
+			return "INTERNET_ERROR";
+
+		// 请求并处理返回结果
+		// 获得返回数据
+		String content = getJSONString(connection);
+		if (content == null)
+			return "INTERNET_ERROR";
+		else
+			return content;
+	}
+
+	//发送图片路径，返回装载了图片的Bitmap
+	public static Bitmap getPicture(String path) {
+		// 连接网址
+		HttpURLConnection connection = connectURL("/transwind/app/get_picture.php");
+		if (connection == null)
+			return null;
+
+		// 发送POST数据
+		String str = null;
+		try {
+			str = "path=" + URLEncoder.encode(path, "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		int result = setPost(connection, str);
+		if (result == ERROR)
+			return null;
+
+		// 将传回的二进制流转化为Bitmap返回
+		Bitmap bitmap = null;
+		try {
+			bitmap = BitmapFactory.decodeStream(connection.getInputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bitmap;
 	}
 }

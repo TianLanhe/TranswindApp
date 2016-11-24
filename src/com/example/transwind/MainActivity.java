@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.transwind.data.Advertisement;
 import com.example.transwind.data.User;
 import com.example.transwind.fragment.HomeFragment;
 import com.example.transwind.fragment.MineFragment;
@@ -39,13 +40,13 @@ public class MainActivity extends Activity {
 
 	private ProgressDialog progress_dialog;
 
+	private HomeFragment frg_home;
+
 	// 数据相关
 	private User user;
 	private String phonenum;
-	private int type=0;
+	private int type = 0;
 	private long lastTime = 0;
-	private boolean isFirst_home=true;
-	private boolean isFirst_mine=true;
 
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
@@ -53,34 +54,34 @@ public class MainActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 100:
-				String content = (String) msg.obj;
-				//如果网络错误，则从本地获取用户类型
 				progress_dialog.dismiss();
-				if (content.equals("INTERNET_ERROR")){
-					type=getSharedPreferences("user", MODE_PRIVATE).getInt(
+				String content = (String) msg.obj;
+				// 如果网络错误，则从本地获取用户类型
+				if (content.equals("INTERNET_ERROR")) {
+					type = getSharedPreferences("user", MODE_PRIVATE).getInt(
 							"type", -1);
-					Log.d("MainActivity","type:"+type);
-					if(type!=0||type!=1||type!=2)
-						Log.e("MainActivity","Type error!");
-				}else {
+					Log.d("MainActivity", "type:" + type);
+					if (type != 0 && type != 1 && type != 2)
+						Log.e("MainActivity", "Type error!");
+				} else {
 					try {
 						// JSON解析
 						JSONArray jsonarray;
 						jsonarray = new JSONArray(content);
 						JSONObject jsonobject = jsonarray.getJSONObject(0);
 						int result_code = jsonobject.getInt("result_code");
-						//获取类型成功，保存类型信息到本地
+						// 获取类型成功，保存类型信息到本地
 						if (result_code == 0) {
 							type = jsonobject.getInt("type");
-							Log.d("MainActivity","type:"+type);
-							
+							Log.d("MainActivity", "type:" + type);
+
 							// 保存相关配置
-							SharedPreferences.Editor editor = getSharedPreferences("user",
-									MODE_PRIVATE).edit();
+							SharedPreferences.Editor editor = getSharedPreferences(
+									"user", MODE_PRIVATE).edit();
 							editor.putInt("type", type);
 							editor.commit();
 						} else if (result_code == 1)
-							Log.e("MainActivity","Phonenum error!");
+							Log.e("MainActivity", "Phonenum error!");
 						else
 							Log.e("MainActivity", "result_code error!");
 					} catch (JSONException e) {
@@ -88,9 +89,9 @@ public class MainActivity extends Activity {
 								Toast.LENGTH_LONG).show();
 					}
 				}
-				//设置下面的栏
+				// 设置下面的栏
 				setTab(type);
-				//设置选中"首页"栏目
+				// 设置选中"首页"栏目
 				rad_home.setChecked(true);
 				break;
 			default:
@@ -119,14 +120,17 @@ public class MainActivity extends Activity {
 		progress_dialog.setCanceledOnTouchOutside(false);
 		progress_dialog.setCancelable(false);
 
+		// 初始化碎片类
+		frg_home = new HomeFragment();
+
 		// 获取手机号
 		phonenum = getSharedPreferences("user", MODE_PRIVATE).getString(
 				"phonenum", "");
 		if (phonenum.equals(""))
 			Log.e("MainActivity", "phonenum get error!");
 
-		progress_dialog.setTitle("正在读取用户类型");
-		progress_dialog.setMessage("请稍候...");
+		// 显示对话框
+		progress_dialog.setMessage("正在读取用户类型，请稍候...");
 		progress_dialog.show();
 
 		// 根据手机号获取用户类型
@@ -147,11 +151,11 @@ public class MainActivity extends Activity {
 			public void onCheckedChanged(RadioGroup arg0, int checkedID) {
 				switch (checkedID) {
 				case (R.id.rad_main_home):
-					getFragmentManager().beginTransaction().replace(R.id.fly_main_view, new HomeFragment()).commit();
-					if(isFirst_home){
-						isFirst_home=false;
-						initHome();
-					}
+					getFragmentManager().beginTransaction()
+							.replace(R.id.fly_main_view, frg_home).commit();
+					/*
+					 * if (isFirst_home) { isFirst_home = false; initHome(); }
+					 */
 					break;
 				case (R.id.rad_main_language_market_merchant):
 					break;
@@ -168,11 +172,12 @@ public class MainActivity extends Activity {
 				case (R.id.rad_main_read_every):
 					break;
 				case (R.id.rad_main_mine):
-					getFragmentManager().beginTransaction().replace(R.id.fly_main_view, new MineFragment()).commit();
-					if(isFirst_mine){
-						isFirst_home=false;
-						initMine();
-					}	
+					getFragmentManager().beginTransaction()
+							.replace(R.id.fly_main_view, new MineFragment())
+							.commit();
+					/*
+					 * if (isFirst_mine) { isFirst_home = false; initMine(); }
+					 */
 					break;
 				default:
 					Toast.makeText(MainActivity.this, "radio类型错误",
@@ -194,9 +199,9 @@ public class MainActivity extends Activity {
 			finish();
 		}
 	}
-	
+
 	// 根据用户类型显示相关的模块
-	private void setTab(int type){
+	private void setTab(int type) {
 		switch (type) {
 		case (User.MERCHANT):
 			rad_language_merchant.setVisibility(View.VISIBLE);
@@ -215,13 +220,5 @@ public class MainActivity extends Activity {
 		default:
 			Toast.makeText(this, "类型错误", Toast.LENGTH_SHORT).show();
 		}
-	}
-	
-	private void initHome(){
-		//TODO
-	}
-	
-	private void initMine(){
-		//TODO
 	}
 }

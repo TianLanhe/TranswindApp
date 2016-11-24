@@ -9,6 +9,7 @@ import com.example.transwind.httptools.HttpControler;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -43,6 +44,7 @@ public class LoginOrRegistActivity extends Activity {
 	TextView txt_login;
 	ViewPager viewpager;
 	ImageView img_indicator;
+	ProgressDialog progress_dialog;
 
 	View view_login;
 	Button btn_login;
@@ -84,6 +86,11 @@ public class LoginOrRegistActivity extends Activity {
 		txt_login = (TextView) findViewById(R.id.txt_login_login);
 		txt_regist = (TextView) findViewById(R.id.txt_login_regist);
 		img_indicator = (ImageView) findViewById(R.id.img_login_indicator);
+		
+		//耗时操作对话框
+		progress_dialog=new ProgressDialog(this);
+		progress_dialog.setCancelable(false);
+		progress_dialog.setCanceledOnTouchOutside(false);
 
 		view_login = LayoutInflater.from(this).inflate(
 				R.layout.viewpager_login, null);
@@ -246,6 +253,9 @@ public class LoginOrRegistActivity extends Activity {
 					Toast.makeText(LoginOrRegistActivity.this, "请输入正确的手机号码",
 							Toast.LENGTH_SHORT).show();
 				} else {
+					progress_dialog.setMessage("正在登录，请稍候...");
+					progress_dialog.show();
+					
 					new Thread(new Runnable() {
 						@Override
 						public void run() {
@@ -321,6 +331,9 @@ public class LoginOrRegistActivity extends Activity {
 								public void done(BmobException ex) {
 									if (ex == null) {
 										// 短信验证码已验证成功，向服务器发起注册请求
+										progress_dialog.setMessage("正在注册，请稍候...");
+										progress_dialog.show();
+										
 										new Thread(new Runnable() {
 											@Override
 											public void run() {
@@ -409,6 +422,8 @@ public class LoginOrRegistActivity extends Activity {
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
+			//取消等待对话框
+			progress_dialog.dismiss();
 			switch (msg.what) {
 			case HttpControler.INTERNET_ERROR:
 				Toast.makeText(LoginOrRegistActivity.this, "网络错误，请检查网络",

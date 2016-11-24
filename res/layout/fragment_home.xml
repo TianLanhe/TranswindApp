@@ -13,28 +13,34 @@
         android:orientation="vertical" >
 
         <!-- Banner横幅 -->
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp" >
+            android:layout_height="200dp" >
+
+            <!-- ViewPager -->
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vwp_home_banner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+            <!-- 小点 -->
+
             <LinearLayout
                 android:id="@+id/lly_home_spots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:gravity="center"
                 android:orientation="horizontal" />
         </RelativeLayout>
 
         <!-- 书籍推荐 -->
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
     </LinearLayout>
