@@ -18,7 +18,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class HttpControler {
-	private static String DOMAIN_NAME = "http://192.168.1.101";
+	private static String DOMAIN_NAME = "http://192.168.1.104";
 	private static final int TIMEOUT = 8000;
 
 	public static final int INTERNET_ERROR = 1; // 网络错误
@@ -306,7 +306,7 @@ public class HttpControler {
 			return content;
 	}
 
-	//发送图片路径，返回装载了图片的Bitmap
+	// 发送图片路径，返回装载了图片的Bitmap
 	public static Bitmap getPicture(String path) {
 		// 连接网址
 		HttpURLConnection connection = connectURL("/transwind/app/get_picture.php");
@@ -332,5 +332,33 @@ public class HttpControler {
 			e.printStackTrace();
 		}
 		return bitmap;
+	}
+
+	// 发送起始下标start和长度length，获取精品阅读图书信息，返回JSON数据，包含result_code和length个图书数组
+	public static String getBook(int start, int length) {
+		// 连接网址
+		HttpURLConnection connection = connectURL("/transwind/app/get_book.php");
+		if (connection == null)
+			return "INTERNET_ERROR";
+
+		// 发送POST数据
+		String str = null;
+		try {
+			str = "start=" + URLEncoder.encode(start + "", "utf-8")
+					+ "&length=" + URLEncoder.encode(length + "", "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		int result = setPost(connection, str);
+		if (result == ERROR)
+			return "INTERNET_ERROR";
+
+		// 请求并处理返回结果
+		// 获得返回数据
+		String content = getJSONString(connection);
+		if (content == null)
+			return "INTERNET_ERROR";
+		else
+			return content;
 	}
 }

@@ -9,9 +9,9 @@
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name="com.example.transwind.data.TransWindApplication"
@@ -38,17 +38,16 @@
         </activity>
 
         <!-- 登录界面 -->
-        <activity android:name=".LoginOrRegistActivity" >
-        </activity>
+        <activity android:name=".LoginOrRegistActivity" />
 
         <!-- 找回密码界面 -->
-        <activity android:name=".FindbackActivity" >
-        </activity>
-
+        <activity android:name=".FindbackActivity" />
 
         <!-- 重置密码界面 -->
-        <activity android:name=".ResetActivity" >
-        </activity>
+        <activity android:name=".ResetActivity" />
+
+        <!-- 网页查看界面 -->
+        <activity android:name=".WebActivity" />
     </application>
 
 </manifest>

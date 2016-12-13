@@ -9,30 +9,22 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 @SuppressWarnings("serial")
-public class Advertisement implements Serializable {
+public class Book implements Serializable {
 
-	private String title; // 标题
+	private String name;// 书名
+	private String description;// 书的简短描述
 	private byte[] picture; // 图片
-	private String url; // 链接
 
-	public Advertisement() {
-		title = "";
-		url = "";
+	public Book() {
+		name = "";
+		description = "";
 		picture = null;
 	}
 
-	public Advertisement(String title, String url) {
-		this.title = title;
-		this.url = url;
+	public Book(String name, String description) {
+		this.name = name;
+		this.description = description;
 		picture = null;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getUrl() {
-		return url;
 	}
 
 	public void setPicture(Bitmap picture) {
@@ -44,7 +36,7 @@ public class Advertisement implements Serializable {
 			data = out.toByteArray();
 			out.close();
 		} catch (IOException e) {
-			Log.e("Advertisement", "Bitmap Translate Error!");
+			Log.e("Book", "Bitmap Translate Error!");
 		}
 		this.picture = data;
 	}
@@ -56,11 +48,20 @@ public class Advertisement implements Serializable {
 			return null;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
 }

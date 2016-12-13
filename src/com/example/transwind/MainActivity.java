@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.transwind.data.Advertisement;
 import com.example.transwind.data.User;
 import com.example.transwind.fragment.HomeFragment;
 import com.example.transwind.fragment.MineFragment;
