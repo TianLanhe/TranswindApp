@@ -100,6 +100,7 @@ public class HomeFragment extends Fragment {
 						if (count_all == 2) {
 							count_all = 0;
 							progress_dialog.dismiss();
+							Toast.makeText(activity, "网络错误，请检查网络", Toast.LENGTH_SHORT).show();
 						}
 					}
 				} else {
@@ -108,7 +109,8 @@ public class HomeFragment extends Fragment {
 						JSONObject jsonobject = jsonarray.getJSONObject(0);
 						int result_code = jsonobject.getInt("result_code");
 
-						// 如果result_code表明成功，则读取JSON数据，储存进广告类中
+						// 如果result_code==0表明成功，则读取JSON数据，储存进广告类中
+						// 如果result_code==1，表示参数什么的出错或图书已经读完了
 						if (result_code == 0) {
 							advertisements = new Advertisement[jsonarray
 									.length() - 1];
@@ -192,6 +194,7 @@ public class HomeFragment extends Fragment {
 						if (count_all == 2) {
 							count_all = 0;
 							progress_dialog.dismiss();
+							Toast.makeText(activity, "网络错误，请检查网络", Toast.LENGTH_SHORT).show();
 						}
 					}
 				} else {
@@ -223,9 +226,12 @@ public class HomeFragment extends Fragment {
 										jsonobject.getString("picture")))
 										.start();
 							}
-						} else if (result_code == 1)
+						} else if (result_code == 1){
 							Log.e("HomeFragment", "Get Book Error!");
-						else
+							// 有可能是后台数据库不够图书了
+							if (pullrefreshscrollview.isRefreshing())
+								pullrefreshscrollview.onRefreshComplete();
+						}else
 							Log.e("HomeFragment", "result_code error!");
 					} catch (JSONException e) {
 						Toast.makeText(activity, "JSON解析错误", Toast.LENGTH_LONG)
@@ -243,9 +249,16 @@ public class HomeFragment extends Fragment {
 					if (books.size() == 6 && !saveToFile("books", books))
 						Log.e("HomeFragment", "Save Books To File Error!");
 
-					if (pullrefreshscrollview.isRefreshing())
+					if (pullrefreshscrollview.isRefreshing()) {
 						pullrefreshscrollview.onRefreshComplete();
-					else {
+						// 如果是刷新添加的，完成后将页面拉到最下面，延迟0.2秒，不然太急了，看起来怪怪的
+						scrollview.postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								scrollview.fullScroll(View.FOCUS_DOWN);
+							}
+						}, 200);
+					} else {
 						++count_all;
 						if (count_all == 2) {
 							count_all = 0;
@@ -507,13 +520,6 @@ public class HomeFragment extends Fragment {
 					});
 			lly_books.addView(view);
 		}
-		// 添加完成后将页面拉到最下面，延迟0.2秒，不然太急了，看起来怪怪的
-		scrollview.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				scrollview.fullScroll(View.FOCUS_DOWN);
-			}
-		}, 200);
 	}
 
 	// 将从服务器读取到的对象保存到本地

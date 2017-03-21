@@ -18,7 +18,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class HttpControler {
-	private static String DOMAIN_NAME = "http://192.168.1.104";
+	private static String DOMAIN_NAME = "http://277898.vhost526.cloudvhost.cn";
 	private static final int TIMEOUT = 8000;
 
 	public static final int INTERNET_ERROR = 1; // 网络错误
@@ -360,5 +360,91 @@ public class HttpControler {
 			return "INTERNET_ERROR";
 		else
 			return content;
+	}
+
+	// 发送手机号码和反馈内容，将反馈内容传送到服务器保存，返回结果代码
+	public static int sendFeedback(String phonenum, String content1) {
+		// 连接网址
+		HttpURLConnection connection = connectURL("/transwind/app/send_feedback.php");
+		if (connection == null)
+			return INTERNET_ERROR;
+
+		// 发送POST数据
+		String str = null;
+		try {
+			str = "phonenum=" + URLEncoder.encode(phonenum, "utf-8")
+					+ "&content=" + URLEncoder.encode(content1, "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		int result = setPost(connection, str);
+		if (result == ERROR)
+			return INTERNET_ERROR;
+
+		// 请求并处理返回结果
+		try {
+			// 获得返回数据
+			String content = getJSONString(connection);
+			if (content == null)
+				return INTERNET_ERROR;
+
+			// JSON解析
+			JSONArray jsonarray = new JSONArray(content);
+			JSONObject jsonobject = jsonarray.getJSONObject(0);
+			int result_code = jsonobject.getInt("result_code");
+			if (result_code == 0)
+				return HTTP_RESULT_OK;
+			else if (result_code == 1)
+				return HTTP_RESULT_ERROR;
+			else
+				Log.e("HttpControler", "result_code error!");
+		} catch (JSONException e) {
+			return DATA_ERROR;
+		}
+		return HTTP_RESULT_OK;
+	}
+
+	// 发送手机号码和反馈内容，将反馈内容传送到服务器保存，返回结果代码
+	public static int modifyPassword(String phonenum, String oldpsw,
+			String newpsw) {
+		// 连接网址
+		HttpURLConnection connection = connectURL("/transwind/app/modify_password.php");
+		if (connection == null)
+			return INTERNET_ERROR;
+
+		// 发送POST数据
+		String str = null;
+		try {
+			str = "phonenum=" + URLEncoder.encode(phonenum, "utf-8")
+					+ "&oldpassword=" + URLEncoder.encode(oldpsw, "utf-8")
+					+ "&newpassword=" + URLEncoder.encode(newpsw, "utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		int result = setPost(connection, str);
+		if (result == ERROR)
+			return INTERNET_ERROR;
+
+		// 请求并处理返回结果
+		try {
+			// 获得返回数据
+			String content = getJSONString(connection);
+			if (content == null)
+				return INTERNET_ERROR;
+
+			// JSON解析
+			JSONArray jsonarray = new JSONArray(content);
+			JSONObject jsonobject = jsonarray.getJSONObject(0);
+			int result_code = jsonobject.getInt("result_code");
+			if (result_code == 0)
+				return HTTP_RESULT_OK;
+			else if (result_code == 1)
+				return HTTP_RESULT_ERROR;
+			else
+				Log.e("HttpControler", "result_code error!");
+		} catch (JSONException e) {
+			return DATA_ERROR;
+		}
+		return HTTP_RESULT_OK;
 	}
 }

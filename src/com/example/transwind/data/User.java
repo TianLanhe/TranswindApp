@@ -2,7 +2,7 @@ package com.example.transwind.data;
 
 import android.graphics.Bitmap;
 
-public class User {
+public abstract class User {
 	public static final int MERCHANT=0; //商户
 	public static final int TRANSLATOR=2; //译者
 	public static final int NORMAL=1;	//普通用户
@@ -13,18 +13,6 @@ public class User {
 	private Bitmap icon;
 	private int wind_bean;
 	
-	private String email;
-	private String address;
-	
-	public User(){
-		phonenum="";
-	}
-	public User(String phonenum,String username,int type){
-		this.phonenum=phonenum;
-		this.username=username;
-		this.type=type;
-	}
-	
 	public String getPhonenum(){
 		return phonenum;
 	}
@@ -32,12 +20,8 @@ public class User {
 		this.phonenum=phonenum;
 	}
 	
-	public int getType(){
-		return type;
-	}
-	public void setType(int type){
-		this.type=type;
-	}
+	//抽象方法，根据不同的用户类型返回不同值
+	public abstract int getType();
 	
 	public String getUsername(){
 		return username;
@@ -51,9 +35,5 @@ public class User {
 	}
 	public Bitmap getIcon(){
 		return icon;
-	}
-	
-	public int getBean(){
-		return wind_bean;
 	}
 }

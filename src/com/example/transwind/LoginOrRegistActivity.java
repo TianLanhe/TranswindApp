@@ -74,7 +74,7 @@ public class LoginOrRegistActivity extends Activity {
 	String regist_password;
 	String user_type;
 	String verification;
-	Boolean clickable=false;
+	Boolean clickable = false;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -86,9 +86,9 @@ public class LoginOrRegistActivity extends Activity {
 		txt_login = (TextView) findViewById(R.id.txt_login_login);
 		txt_regist = (TextView) findViewById(R.id.txt_login_regist);
 		img_indicator = (ImageView) findViewById(R.id.img_login_indicator);
-		
-		//耗时操作对话框
-		progress_dialog=new ProgressDialog(this);
+
+		// 耗时操作对话框
+		progress_dialog = new ProgressDialog(this);
 		progress_dialog.setCancelable(false);
 		progress_dialog.setCanceledOnTouchOutside(false);
 
@@ -116,7 +116,7 @@ public class LoginOrRegistActivity extends Activity {
 				.findViewById(R.id.txt_regist_get_verification);
 		edt_verificate = (EditText) view_regist
 				.findViewById(R.id.edt_regist_verificate);
-		txt_yes =  (TextView) view_regist.findViewById(R.id.txt_regist_yes);
+		txt_yes = (TextView) view_regist.findViewById(R.id.txt_regist_yes);
 		btn_regist = (Button) view_regist.findViewById(R.id.btn_regist_regist);
 		spn_user_type = (Spinner) view_regist
 				.findViewById(R.id.spn_regist_user_type);
@@ -255,7 +255,7 @@ public class LoginOrRegistActivity extends Activity {
 				} else {
 					progress_dialog.setMessage("正在登录，请稍候...");
 					progress_dialog.show();
-					
+
 					new Thread(new Runnable() {
 						@Override
 						public void run() {
@@ -331,9 +331,10 @@ public class LoginOrRegistActivity extends Activity {
 								public void done(BmobException ex) {
 									if (ex == null) {
 										// 短信验证码已验证成功，向服务器发起注册请求
-										progress_dialog.setMessage("正在注册，请稍候...");
+										progress_dialog
+												.setMessage("正在注册，请稍候...");
 										progress_dialog.show();
-										
+
 										new Thread(new Runnable() {
 											@Override
 											public void run() {
@@ -345,6 +346,8 @@ public class LoginOrRegistActivity extends Activity {
 												// 为了区分注册的成功失败与登录的成功失败
 												if (result_code != HttpControler.INTERNET_ERROR)
 													msg.what = result_code + 100;
+												else
+													msg.what = result_code;
 												handler.sendMessage(msg);
 											}
 										}).start();
@@ -399,19 +402,23 @@ public class LoginOrRegistActivity extends Activity {
 		});
 
 		// "同意协议"按钮
-		txt_yes.setOnClickListener(new OnClickListener(){
+		txt_yes.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				clickable=!clickable;
+				clickable = !clickable;
 				Drawable drawable;
-				if(clickable){
-					drawable= getResources().getDrawable(R.drawable.viewpager_regist_yes_pressed);
-					btn_regist.setBackgroundResource(R.drawable.button);
-				}else{
-					drawable= getResources().getDrawable(R.drawable.viewpager_regist_yes_normal);
-					btn_regist.setBackgroundResource(R.drawable.button_unclickable);
+				if (clickable) {
+					drawable = getResources().getDrawable(
+							R.drawable.viewpager_regist_yes_pressed);
+					//btn_regist.setBackgroundResource(R.drawable.button);
+				} else {
+					drawable = getResources().getDrawable(
+							R.drawable.viewpager_regist_yes_normal);
+					//btn_regist
+							//.setBackgroundResource(R.drawable.button_unclickable);
 				}
-				drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+				drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+						drawable.getMinimumHeight());
 				txt_yes.setCompoundDrawables(drawable, null, null, null);
 				btn_regist.setEnabled(clickable);
 			}
@@ -422,7 +429,7 @@ public class LoginOrRegistActivity extends Activity {
 	private Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			//取消等待对话框
+			// 取消等待对话框
 			progress_dialog.dismiss();
 			switch (msg.what) {
 			case HttpControler.INTERNET_ERROR:

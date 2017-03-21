@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 	private ProgressDialog progress_dialog;
 
 	private HomeFragment frg_home;
+	private MineFragment frg_mine;
 
 	// 数据相关
 	private User user;
@@ -121,6 +122,7 @@ public class MainActivity extends Activity {
 
 		// 初始化碎片类
 		frg_home = new HomeFragment();
+		frg_mine=new MineFragment();
 
 		// 获取手机号
 		phonenum = getSharedPreferences("user", MODE_PRIVATE).getString(
@@ -152,9 +154,6 @@ public class MainActivity extends Activity {
 				case (R.id.rad_main_home):
 					getFragmentManager().beginTransaction()
 							.replace(R.id.fly_main_view, frg_home).commit();
-					/*
-					 * if (isFirst_home) { isFirst_home = false; initHome(); }
-					 */
 					break;
 				case (R.id.rad_main_language_market_merchant):
 					break;
@@ -172,11 +171,8 @@ public class MainActivity extends Activity {
 					break;
 				case (R.id.rad_main_mine):
 					getFragmentManager().beginTransaction()
-							.replace(R.id.fly_main_view, new MineFragment())
+							.replace(R.id.fly_main_view, frg_mine)
 							.commit();
-					/*
-					 * if (isFirst_mine) { isFirst_home = false; initMine(); }
-					 */
 					break;
 				default:
 					Toast.makeText(MainActivity.this, "radio类型错误",

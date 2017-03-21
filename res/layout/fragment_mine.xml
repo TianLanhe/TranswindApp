@@ -1,13 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/txt_mine_login_out"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#00f" >
+
+            <!-- 用户头像 -->
+
+            <com.example.transwind.github.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cimg_mine_icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/default_icon"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/txt_mine_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cimg_mine_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_out" />
+            android:orientation="vertical" >
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/txt_mine_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/personal_info" />
+
+            <TextView
+                android:id="@+id/txt_mine_modify_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modify_password" />
+
+            <TextView
+                android:id="@+id/txt_mine_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/feedback" />
+
+            <TextView
+                android:id="@+id/txt_mine_share"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/share" />
+            <TextView
+                android:id="@+id/txt_mine_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_us" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/txt_mine_login_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_out" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

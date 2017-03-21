@@ -19,4 +19,8 @@ public class Translator extends User {
 	public void setMajor(String major){
 		this.major=major;
 	}
+	@Override
+	public int getType() {
+		return TRANSLATOR;
+	}
 }

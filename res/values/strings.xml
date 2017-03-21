@@ -32,5 +32,15 @@
     <string name="regist_password_hint">请输入密码(6~15位)</string>
     <string name="login_out">退出登录</string>
     <string name="selected_read">精品阅读</string>
+    <string name="feedback">意见反馈</string>
+    <string name="about_us">关于我们</string>
+    <string name="change_phonenum">换绑手机</string>
+    <string name="modify_password">修改密码</string>
+    <string name="personal_info">个人信息</string>
+    <string name="share">分享好友</string>
+    <string name="send">发送</string>
+    <string name="feedback_hint">请留下您的宝贵意见和建议，我们将努力改进，谢谢！</string>
+    <string name="modify_hint">请输入旧密码</string>
+    <string name="modify">修改</string>
 
 </resources>

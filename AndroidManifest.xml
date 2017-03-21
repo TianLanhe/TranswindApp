@@ -48,6 +48,12 @@
 
         <!-- 网页查看界面 -->
         <activity android:name=".WebActivity" />
+
+        <!-- 意见反馈界面 -->
+        <activity android:name=".FeedbackActivity" />
+        
+        <!-- 修改密码界面 -->
+        <activity android:name=".ModifyPasswordActivity" />
     </application>
 
 </manifest>
