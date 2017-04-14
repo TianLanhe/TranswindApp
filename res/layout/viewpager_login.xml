@@ -41,14 +41,4 @@
         android:text="@string/login"
         android:textColor="@color/white" />
 
-    <TextView
-        android:id="@+id/txt_login_smslogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:text="@string/sms_login"
-        android:textColor="@color/my_blue" />
-
 </LinearLayout>

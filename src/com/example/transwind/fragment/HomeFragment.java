@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
 	int currentItem = 0;// ViewPager当前的item
 	Timer timer;
 
-	@SuppressLint("HandlerLeak")
+	
 	Handler handler = new Handler() {
 		private int count_ad = 0;// 加载广告图片完成的计数器
 		private int count_all = 0;// 加载Banner和Book是否完成的计数器，只有两件事都完成了，才能将等待框取消

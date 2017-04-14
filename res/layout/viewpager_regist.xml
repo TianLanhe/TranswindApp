@@ -103,14 +103,13 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
-        android:drawableLeft="@drawable/viewpager_regist_yes_normal"
+        android:drawableLeft="@drawable/viewpager_regist_yes_pressed"
         android:text="@string/yes_hint"
         android:textColor="@color/my_blue" />
 
     <Button
         android:id="@+id/btn_regist_regist"
         style="@style/ButtonStyle"
-        android:enabled="false"
         android:layout_marginTop="10dp"
         android:text="@string/regist_hint"
         android:textColor="@color/white" />
